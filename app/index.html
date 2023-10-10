@@ -1,0 +1,94 @@
+<!--
+    Looking Glass - Telegram mini-app
+    Main page
+    (c) 2023 githubcatw
+-->
+<html>
+    <head>
+        <!-- include A-Frame obviously -->
+        <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+        <!-- include ar.js for A-Frame -->
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
+        <!-- include Telegram web app library -->
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+        <!-- include libraries for capturing a screenshot -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="lib/merge-images.js"></script>
+        <script src="lib/screenshot.js"></script>
+
+        <!-- include custom libraries -->
+        <script src="lib/log-message.js"></script>
+
+        <!-- include config -->
+        <script src="config.js"></script>
+
+        <!-- include app code -->
+        <script src="app.js"></script>
+
+        <!-- include app style sheet -->
+        <link rel="stylesheet" href="app.css">
+    </head>
+    <body>
+        <!-- basic loader with a background -->
+        <div class="loader" id="loader">
+            <!-- shown when a-frame and the markers are loading -->
+            <div class="loader-card" id="loadingScreen">
+                <div class="loader-content">Loading...</div>
+            </div>
+            <!-- shown after everything has been loaded -->
+            <div class="loader-card hide" id="autoplayScreen">
+                <!-- tap hint animation -->
+                <div class="tap-hint"></div>
+                <!-- text -->
+                <div class="loader-content" id="autoplayCTA">Tap on the screen to experience AR.</div>
+            </div>
+        </div>
+
+        <!-- photo button -->
+        <button id="photo" class="photo"></button>
+
+        <!-- photo overlay -->
+        <div class="loader hide" id="photo-overlay">
+            <!-- shown when the photo is being taken -->
+            <div class="loader-card">
+                <div class="loader-content">Letting the photo develop...</div>
+            </div>
+        </div>
+
+        <!-- log message - enable for testing only -->
+        <!-- <p id="logMessage"></p> -->
+
+        <!-- a-frame scene -->
+        <!-- VR features are disabled because they're unsupported -->
+        <a-scene
+            vr-mode-ui="enabled: false;"
+            renderer="logarithmicDepthBuffer: true;"
+            embedded
+            arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+        >
+            <!-- define the bitbot marker -->
+            <a-nft
+                type="nft"
+                url="./app/markers/bitbot/bitbot"
+                smooth="true"
+                smoothCount="10"
+                smoothTolerance=".01"
+                smoothThreshold="5"
+            >
+                <!-- this is the model that will be shown -->
+                <a-entity
+                gltf-model="models/robot/robot.glb"
+                scale="400 400 400"
+                rotation="180 180 0"
+                position="10 0 0"></a-entity>
+            </a-nft>
+            <!-- define a camera -->
+            <a-entity camera></a-entity>
+        </a-scene>
+
+        <!-- screenshot canvas - not really a part of the app UI -->
+        <canvas id="canvas" hidden></canvas>
+    </body>
+</html>

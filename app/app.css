@@ -1,0 +1,173 @@
+/*
+    Looking Glass - Telegram mini app
+    Stylesheet
+    (c) 2023 githubcatw
+*/
+
+body {
+    /* These are just tweaks to hide the white padding that some browsers add */
+    margin: 0px;
+    overflow: hidden;
+    /* Set the text color to white */
+    color: white;
+    /* Center text */
+    text-align: center;
+    /* Set the fonts, in the order: Apple system font, Roboto (Android), Segoe UI (Microsoft - intended for web versions), default sans serif */
+    font-family: -apple-system, BlinkMacSystemFont, "Roboto", 'Segoe UI', sans-serif;
+}
+
+/* Photo button (copying the one from Stories) */
+.photo {
+    /* Visual below */
+
+    /* Make it large */
+    width: 75px;
+    height: 75px;
+    /* Make it white */
+    background: white;
+    /* Make it a circle by specifying a large radius */
+    border-radius: 999px;
+    /* Add a white outline that's slightly larger than the button
+       (outline is different from border in that it can be offset from the element, instead of
+        always being exactly around it) */
+    outline: 4px solid white;
+    outline-offset: 8px;
+    /* Remove the default border */
+    border: none;
+
+    /* Positioning below */
+
+    /* Put the button in absolute position mode (which allows specifying the exact position) */
+    position: absolute;
+    /* Make it 50px above the end of the page */
+    bottom: 50px;
+    /* The 2 lines below center it vertically */
+    left: 50%;
+    transform: translateX(-50%);
+
+    /* Animation below */
+
+    /* Animate the properties that change when the button is pressed */
+    transition-property: outline-offset, width, height, bottom;
+    /* Shorten the animation and remove the delay */
+    transition-duration: 0.1s;
+    transition-delay: 0s;
+    /* Use easing for the animation - this makes it more like the one in Telegram */
+    transition-timing-function: ease-in-out;
+}
+
+/* Photo button - pressed */
+.photo:active {
+    /* Make it smaller */
+    width: 50px;
+    height: 50px;
+    /* Add bottom padding */
+    bottom: 62.5px;
+    /* Make the outline farther */
+    /* outline-offset: 45px; */
+    outline-offset: 25px;
+}
+
+/* Loader */
+.loader {
+    /* It should have a black non-transparent background */
+    background: black;
+    /* Opacity is explicitly set to make the animation work */
+    opacity: 100%;
+    /* Used to make an animation, like in the case of the button */
+    transition: opacity 0.5s;
+    /* Make it the size of the page */
+    width: 100%;
+    height: 100%;
+    /* Fix it to the top of the page */
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    /* Show it above everything else */
+    z-index: 100;
+}
+
+/* Hidden loader - applied only to elements with both the "loader" and "hide" classes */
+.loader.hide {
+    opacity: 0%;
+}
+
+/* Loader card */
+.loader-card {
+    /* Opacity is explicitly set to make the animation work */
+    opacity: 100%;
+    /* Used to make an animation, like in the case of the button */
+    transition: opacity 0.2s;
+    /* Make it the size of the page */
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+}
+/* Loader card content - only apply this style to children of loader cards */
+.loader-card .loader-content {
+    /* Set a larger font size */
+    font-size: 25px;
+    /* Center the object */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* Hidden loader card - applied only to elements with both the "loader-card" and "hide" classes */
+.loader-card.hide {
+    opacity: 0%;
+}
+
+/* Visual logger */
+#logMessage {
+    /* Set a monospace, large font */
+    font-family: monospace;
+    font-size: 20px;
+    /* Show it above all other UI */
+    z-index: 999;
+
+    /* Give it absolute position (i.e. not controlled by layout) -
+       otherwise it moves the AR content down */
+    position: absolute;
+    /* Pin it to the top right corner */
+    top: 0;
+    right: 0;
+    /* Make it the same width as the page */
+    width: 100%;
+}
+
+/* Tap hint */
+.tap-hint {
+    /* Make it larger than the page */
+    width: 1000px;
+    height: 1000px;
+    /* Make it transparent */
+    background-color: #00000000;
+
+    /* Center it - this is the same approach used elsewhere in the loader */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* Make it a circle */
+    border-radius: 999px;
+
+    /* Set a looping animation */
+    animation: tap 1.5s infinite;
+}
+/* Tap hint animation */
+@keyframes tap {
+    /* First, it should be larger than the page and fully transparent */
+    0% {width: 1000px; height: 1000px; background-color: #00000000}
+
+    /* Around the middle of the animation, it shrinks and becomes opaque - this is the "tap" motion */
+    50% {width: 200px; height: 200px; background-color: #333;}
+
+    /* At the end it should become larger and fully transparent - this is the "release finger" motion */
+    80% {width: 400px; height: 400px; background-color: #00000000;}
+
+    /* Delay the start of the next loop by repeating the last keyframe */
+    100% {width: 400px; height: 400px; background-color: #00000000;}
+}
