@@ -1,5 +1,5 @@
 # Looking Glass
-![Banner image](img/banners/setup.png)
+![Banner image](img/banners/main.png)
 An augmented reality Telegram mini app. It can recognize various images, show AR experiences and let users take photos.
 
 In the future, it will support markerless AR, interactive experiences and games as well.
