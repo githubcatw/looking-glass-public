@@ -70,8 +70,8 @@ body {
 
 /* Loader */
 .loader {
-    /* It should have a black non-transparent background */
-    background: black;
+    /* It should use the Telegram theme's background */
+    background: var(--tg-theme-bg-color);
     /* Opacity is explicitly set to make the animation work */
     opacity: 100%;
     /* Used to make an animation, like in the case of the button */
@@ -101,6 +101,8 @@ body {
     /* Make it the size of the page */
     width: 100%;
     height: 100%;
+    /* Use the Telegram theme's text color */
+    color: var(--tg-theme-text-color);
 
     position: relative;
 }
@@ -123,9 +125,11 @@ body {
 #logMessage {
     /* Set a monospace, large font */
     font-family: monospace;
-    font-size: 20px;
+    font-size: 18px;
     /* Show it above all other UI */
     z-index: 999;
+    /* Give it a black semi-transparent background to improve visibility */
+    background: #0005;
 
     /* Give it absolute position (i.e. not controlled by layout) -
        otherwise it moves the AR content down */
@@ -135,6 +139,8 @@ body {
     right: 0;
     /* Make it the same width as the page */
     width: 100%;
+    /* Remove the top margin */
+    margin-top: 0;
 }
 
 /* Tap hint */
@@ -144,6 +150,9 @@ body {
     height: 1000px;
     /* Make it transparent */
     background-color: #00000000;
+
+    /* Opacity is required to make it lighter, because the tap animation uses the button color for the "tap" motion */
+    opacity: 50%;
 
     /* Center it - this is the same approach used elsewhere in the loader */
     position: absolute;
@@ -163,7 +172,7 @@ body {
     0% {width: 1000px; height: 1000px; background-color: #00000000}
 
     /* Around the middle of the animation, it shrinks and becomes opaque - this is the "tap" motion */
-    50% {width: 200px; height: 200px; background-color: #333;}
+    50% {width: 200px; height: 200px; background-color: var(--tg-theme-button-color);}
 
     /* At the end it should become larger and fully transparent - this is the "release finger" motion */
     80% {width: 400px; height: 400px; background-color: #00000000;}
