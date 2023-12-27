@@ -22,6 +22,6 @@ When tapped, the loader disappears with a fade animation, revealing the camera f
 ### Shutter button
 When this button is pressed, the app covers the UI with a black screen with a message, similar to the loader. This is used to hide a freeze that happens when the photo is taken.
 
-Then, a screenshot of both the A-Frame scene and camera feed is taken. Those screenshots are then merged and sent to the backend along with the initialization data. If you're interested in the details of how the server sends images check out the relevant part in the [backend overview](../backend/overview.md).
+Then, a screenshot of both the A-Frame scene and camera feed is taken. Those screenshots are then merged and sent to the backend along with the initialization data. If you're interested in the details of how the server sends images check out the relevant part in the [backend overview](../server/overview.md).
 
 After a response was received, the screen overlay is hidden and removed, similarly to the loader. A message is shown informing the user if their photo was sent (the request was successful) or not.
