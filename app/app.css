@@ -44,6 +44,8 @@ body {
     /* The 2 lines below center it vertically */
     left: 50%;
     transform: translateX(-50%);
+    /* Place it in front of the A-Frame canvas */
+    z-index: 2;
 
     /* Animation below */
 
